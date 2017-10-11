@@ -1,6 +1,8 @@
 package br.edu.univas.si4.tp4.lojaonline.view;
 
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -54,13 +56,22 @@ public class MainFrame extends JFrame{
 		if(searchButton == null){
 			searchButton = new JButton();
 			searchButton.setText("Search");
+			searchButton.addActionListener(new ActionListener() {
+				
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					searchClicked();
+				}
+			});
 		}
 		return searchButton;		
 	}
 	
 	private void searchClicked()
 	{
-		
+		String productName = getSearchField().getText();
+		controller.search(productName);
 	}
 	
 	
