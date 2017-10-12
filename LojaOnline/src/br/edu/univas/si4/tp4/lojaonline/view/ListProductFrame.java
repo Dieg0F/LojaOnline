@@ -8,24 +8,19 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 
-import br.edu.univas.si4.tp4.lojaonline.controller.SearchController;
 import br.edu.univas.si4.tp4.lojaonline.model.Product;
 
 public class ListProductFrame extends JFrame {
 
 	private static final long serialVersionUID = 7630569269345975353L;
-	
-	private SearchController controller;
 
 	private JScrollPane listProductsScrollPane;
 	private JList<Product> listProductList;
 	
 	private DefaultListModel<Product> listProductslistModel;
 	
-	public ListProductFrame(SearchController controller) {
+	public ListProductFrame() {
 
-		this.controller = controller;
-		
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		initialize();
@@ -47,12 +42,13 @@ public class ListProductFrame extends JFrame {
 	private JList<Product> getListProductList() {
 		if(listProductList == null)
 		{
-			listProductList = new JList<>();			
+			listProductList = new JList<>();		
+			listProductList.setModel(getListProductListModel());
 		}
 		return listProductList;
 	}
 
-	private DefaultListModel<Product> getDefaultModel() {
+	private DefaultListModel<Product> getListProductListModel() {
 		if(listProductslistModel == null)
 		{
 			listProductslistModel = new DefaultListModel<Product>();			
@@ -69,8 +65,7 @@ public class ListProductFrame extends JFrame {
 	{		
 		for(Product product : products)
 		{
-			
-			
+			getListProductListModel().addElement(product);			
 		}
 	}
 }
